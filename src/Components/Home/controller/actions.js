@@ -1,9 +1,19 @@
-import { SET_HOME_REQUEST } from './constants'
+import { FETCH_WEATHER } from './constants';
+import axios from 'axios';
 
-export const setHomeRequest = (number) => {
-    console.log("action ", number)
-    return {
-        type: SET_HOME_REQUEST,
-        payload: number
+const key = 'd860baff859fcf15846ad7ba959563bf';
+
+export const fetchWeatherRequest = (weather) => {
+    console.log("action ", weather)
+    return dispatch => {
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${weather}&appid=${key}`)
+            .then(res => {
+                console.log("res ", res)
+                const response = res.data
+                dispatch({
+                    type: FETCH_WEATHER,
+                    payload: response
+                })
+            })
     }
 }

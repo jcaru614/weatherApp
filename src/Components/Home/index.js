@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
-import { setHomeRequest } from './controller/actions';
+import { fetchWeatherRequest } from './controller/actions';
 
 class Home extends Component {
     constructor(props) {
@@ -9,26 +9,25 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <h1>hello world</h1>
-                <button onClick={() => this.props.setNumber(59)}>Add number</button>
-                <h2>number? : {this.props?.number}</h2>
+                <h1>Get the Weather</h1>
+                <button onClick={() => this.props.setWeather("Miami")}>Get Weather</button>
+                <h2>number: {this.props?.weather?.main?.temp}</h2>
             </div>
         )
     }
-
 }
 
 function mapStateToProps(state) {
-    console.log("number mapstatetoprops ", state.homeReducer.number)
+    console.log("number mapstatetoprops ", state.homeReducer.weather)
     return {
-        number: state.homeReducer.number
+        weather: state.homeReducer.weather
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        setNumber: (number) => {
-            dispatch(setHomeRequest(number))
+        setWeather: (weather) => {
+            dispatch(fetchWeatherRequest(weather))
         }
     };
 };

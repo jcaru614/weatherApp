@@ -1,19 +1,19 @@
-import { SET_HOME_REQUEST  } from './constants';
+import { FETCH_WEATHER  } from './constants';
 
 let initialState = {
-    number: 0
+    weather: []
 }
-const numberReducer = (state = initialState, action) => {
+const weatherReducer = (state = initialState, action) => {
     console.log("reducer ", action)
     switch (action.type) {
-        case SET_HOME_REQUEST:
+        case FETCH_WEATHER:
             return Object.assign({}, state, {
-                number: action.payload
+                weather: action.payload
             })
         default:
             return state
     }
 }
 
-export default numberReducer;
+export default weatherReducer;
 
