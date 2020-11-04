@@ -1,7 +1,7 @@
 import { FETCH_WEATHER } from './constants';
 import axios from 'axios';
 
-const key = 'd860baff859fcf15846ad7ba959563bf';
+const key = '';
 
 export const fetchWeatherRequest = (weather) => {
     console.log("action ", weather)
