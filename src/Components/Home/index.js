@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchWeatherRequest } from './controller/actions';
-import mountains from '../../images/mountains.jpg';
 import "./styles.css";
-console.log('MOUNTAIN ', mountains)
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +26,6 @@ class Home extends Component {
     render() {
         return (
             <div>
-            
                 <form onSubmit={this.handleSubmit}>
                     <h1>Get the Weather</h1>
                     <textarea onChange={this.handleChange} value={this.state.city} />
@@ -36,7 +34,6 @@ class Home extends Component {
                     </div>
                 </form>
                 <h2>number: {this.props?.weather?.main?.temp}</h2>
-                <image className='background' src={require(mountains)} alt="mountains" />
             </div>
         )
     }
