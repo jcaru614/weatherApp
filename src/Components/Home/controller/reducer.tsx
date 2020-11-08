@@ -1,9 +1,21 @@
 import { FETCH_WEATHER  } from './constants';
 
+interface actionA {
+    type: "FETCH_WEATHER",
+    payload: {}
+}
+
+interface actionb {
+    type: "test",
+    payload: string
+}
+
 let initialState = {
     weather: {}
 }
-const weatherReducer = (state = initialState, action) => {
+type Actions = actionA | actionb
+
+function weatherReducer(state = initialState, action:Actions) {
     console.log("reducer ", action)
     switch (action.type) {
         case FETCH_WEATHER:

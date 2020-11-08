@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchWeatherRequest } from './controller/actions';
 import "./styles.css";
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 interface HomeComponentState {
     city: string
@@ -41,9 +44,12 @@ class Home extends Component<HomeComponentProps, HomeComponentState> {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <h1>Get the Weather</h1>
-                    <textarea onChange={this.handleChange} value={this.state.city} />
+                    <TextField id="outlined-basic" label="Type a city here" variant="outlined" color="primary"
+                     onChange={this.handleChange} value={this.state.city} />
                     <div>
-                        <button className='button'>Get Weather</button>
+                        <Button variant="contained" color="primary" startIcon={<DeleteIcon />} > 
+                            Get the Weather
+                        </Button>
                     </div>
                 </form>
                 <h2>number: {this.props?.weather?.main?.temp}</h2>

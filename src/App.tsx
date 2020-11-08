@@ -7,11 +7,14 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Home />
+        <div>
+          <Home />
+        </div>
+
       </Provider>
     );
   }
-  
+
 }
 
 export default App;
