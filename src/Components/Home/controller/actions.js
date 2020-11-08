@@ -1,7 +1,7 @@
 import { FETCH_WEATHER } from './constants';
 import axios from 'axios';
 
-const key = '';
+const key = process.env.REACT_APP_API_KEY
 
 export const fetchWeatherRequest = (city) => {
     console.log("action ", city)
