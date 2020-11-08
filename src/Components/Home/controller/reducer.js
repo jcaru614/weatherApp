@@ -1,7 +1,7 @@
 import { FETCH_WEATHER  } from './constants';
 
 let initialState = {
-    weather: []
+    weather: {}
 }
 const weatherReducer = (state = initialState, action) => {
     console.log("reducer ", action)

@@ -3,19 +3,32 @@ import { connect } from 'react-redux';
 import { fetchWeatherRequest } from './controller/actions';
 import "./styles.css";
 
-class Home extends Component {
-    constructor(props) {
+interface HomeComponentState {
+    city: string
+}
+
+interface HomeComponentProps {
+    weather: {
+        main: {
+            temp: Number
+        }
+    }
+    setWeather: Function
+}
+
+class Home extends Component<HomeComponentProps, HomeComponentState> {
+    constructor(props:any) {
         super(props);
         this.state = {
             city: ''
         }
     }
 
-    handleChange = (e) => {
+    handleChange = (e:React.ChangeEvent<HTMLTextAreaElement>):void => {
         this.setState({ city: e.target.value })
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = (e: React.SyntheticEvent):void => {
         e.preventDefault()
         this.props.setWeather(this.state.city)
         this.setState({
@@ -23,7 +36,7 @@ class Home extends Component {
         })
     }
 
-    render() {
+    public render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -39,17 +52,17 @@ class Home extends Component {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state:any) {
     console.log("mapstatetoprops ", state.homeReducer.weather)
     return {
         weather: state.homeReducer.weather
     }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch:any) {
     console.log("mapdispatchtoprops ", dispatch)
     return {
-        setWeather: (city) => {
+        setWeather: (city:string) => {
             dispatch(fetchWeatherRequest(city))
         }
     };
