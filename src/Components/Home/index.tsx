@@ -10,25 +10,37 @@ import { MyButton, MyTextField } from './styles';
 
 
 interface HomeComponentState {
-    city: string
+    city: string,
+    latitude: number,
+    longitude: number
 }
 
 interface HomeComponentProps {
-    weather: {
-        name: string,
-        main: {
-            temp: Number
-        }
-    }
+    temp: number,
+    name: string,
+    description: string,
     setWeather: Function
 }
 
 class Home extends Component<HomeComponentProps, HomeComponentState> {
-    constructor(props: any) {
+    constructor(props: HomeComponentProps) {
         super(props);
         this.state = {
-            city: ''
+            city: '',
+            latitude: 0,
+            longitude: 0
         }
+    }
+
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log("position ", position.coords);
+            this.setState({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            })
+            console.log("state ", this.state);
+        })
     }
 
     handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
@@ -44,22 +56,23 @@ class Home extends Component<HomeComponentProps, HomeComponentState> {
     }
 
     kelvToFahr = () => {
-        let cityName = this.props?.weather?.name;
-        let kelvins: any = this.props?.weather?.main?.temp;
+        let description = this.props?.description;
+        let cityName = this.props?.name;
+        let kelvins: any = this.props?.temp;
         if (kelvins) {
             let fahrenheit: number = Math.round((kelvins - 273.15) * 9 / 5 + 32)
             if (fahrenheit >= 72) {
                 return (
                     <span className="temp">
-                        <h1>{"The Temperature in " + cityName + " is " + fahrenheit + "°F"}</h1>
-                        <img className="sun" src={sun} alt="sun" />
+                        <h1>{`The Temperature in ${cityName} is ${fahrenheit}°F with ${description}`}</h1>
+                        <img className="temp" src={sun} alt="sun" />
                     </span>
                 )
             } else {
                 return (
                     <span className="temp">
-                        <h1>{"The Temperature in " + cityName + " is " + fahrenheit + "°F"}</h1>
-                        <img className="wind" src={wind} alt="wind" />
+                        <h1>{`The Temperature in ${cityName} is ${fahrenheit} °F with ${description}`}</h1>
+                        <img className="temp" src={wind} alt="wind" />
                     </span>
                 )
             }
@@ -80,7 +93,7 @@ class Home extends Component<HomeComponentProps, HomeComponentState> {
                                 </MyButton>
                         </Box>
                     </form>
-                    <h2>{this?.kelvToFahr()}</h2>
+                    {this?.kelvToFahr()}
                 </div>
             </div>
         )
@@ -88,9 +101,11 @@ class Home extends Component<HomeComponentProps, HomeComponentState> {
 }
 
 function mapStateToProps(state: any) {
-    console.log("mapstatetoprops ", state.homeReducer.weather)
+    console.log("mapstatetoprops ", state.homeReducer)
     return {
-        weather: state.homeReducer.weather
+        temp: state.homeReducer.temp,
+        name: state.homeReducer.name,
+        description: state.homeReducer.description
     }
 }
 

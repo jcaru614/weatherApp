@@ -21,5 +21,6 @@ export const MyButton = styled(Button)({
     color: 'white',
     height: 40,
     padding: '0 30px',
+    width: '315px',
   })
 
