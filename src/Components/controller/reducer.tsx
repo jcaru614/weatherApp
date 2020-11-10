@@ -15,19 +15,27 @@ interface actionA {
     }
 }
 
-interface actionb {
+interface actionB {
     type: "FETCH_WEATHER_COOR",
-    payload: any
+    payload: {
+        weather: [
+            {
+                description: string
+            }
+        ],
+        main: {
+            temp: number
+        }
+        name: string
+    }
 }
 
 let initialState = {
     temp: 0,
     name: '',
     description: '',
-    latitude: 0,
-    longitude: 0
 }
-type Actions = actionA | actionb
+type Actions = actionA | actionB
 
 function weatherReducer(state = initialState, action: Actions) {
     console.log("reducer ", action)
@@ -40,8 +48,9 @@ function weatherReducer(state = initialState, action: Actions) {
             })
         case FETCH_WEATHER_COOR:
             return Object.assign({}, state, {
-                latitude: action.payload.latitude,
-                longitude: action.payload.longitude
+                temp: action.payload.main.temp,
+                name: action.payload.name,
+                description: action.payload.weather[0].description
             })
         default:
             return state

@@ -84,6 +84,7 @@ class Home extends Component<HomeComponentProps, HomeComponentState> {
         return (
             <div className="home">
                 <div className="innerHome">
+                <LocationAccess latitude={this.state?.latitude} longitude={this.state?.longitude} />
                     <form onSubmit={this.handleSubmit}>
                         <h1>Get the Weather</h1>
                         <MyTextField placeholder="Type a city here" id="standard-basic"
@@ -92,7 +93,7 @@ class Home extends Component<HomeComponentProps, HomeComponentState> {
                             <MyButton type="submit" startIcon={<FlashOnIcon />} >
                                 Get the Weather
                                 </MyButton>
-                                <LocationAccess lat={this.state?.latitude} long={this.state?.longitude} />
+                                
                         </Box>
                     </form>
                     {this?.kelvToFahr()}

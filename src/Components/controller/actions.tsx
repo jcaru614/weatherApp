@@ -2,7 +2,6 @@ import { FETCH_WEATHER, FETCH_WEATHER_COOR } from './constants';
 import axios from 'axios';
 
 const key = process.env.REACT_APP_API_KEY
-console.log("key ", key)
 
 export const fetchWeatherRequest = (city: string) => {
     console.log("action ", city)
@@ -20,11 +19,12 @@ export const fetchWeatherRequest = (city: string) => {
 }
 
 export const fetchWeatherCoor = (latitude: number, longitude: number) => {
-    console.log("action 2 ", latitude, longitude)
+    console.log("key ", key)
     return (dispatch: any) => {
-        axios.get(`api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`)
+        console.log("action 2 ", latitude, longitude)
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`)
             .then(res => {
-                console.log("res 2 ", res)
+                console.log("res 2 ", res.data)
                 const response = res.data;
                 dispatch({
                     type: FETCH_WEATHER_COOR,
