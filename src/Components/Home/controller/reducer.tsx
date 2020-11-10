@@ -5,17 +5,17 @@ interface actionA {
     payload: {}
 }
 
-interface actionb {
-    type: "test",
-    payload: string
-}
+// interface actionb {
+//     type: "test",
+//     payload: string
+// }
 
 let initialState = {
     weather: {}
 }
-type Actions = actionA | actionb
+// type Actions = actionA | actionb
 
-function weatherReducer(state = initialState, action:Actions) {
+function weatherReducer(state = initialState, action:actionA) {
     console.log("reducer ", action)
     switch (action.type) {
         case FETCH_WEATHER:
