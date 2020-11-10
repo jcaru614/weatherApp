@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchWeatherRequest } from './controller/actions';
+import { fetchWeatherRequest } from '../controller/actions';
 import "./styles.css";
+import LocationAccess from '../locate/index'
 import wind from '../../images/wind.png'
 import sun from '../../images/sun.png'
 import FlashOnIcon from '@material-ui/icons/FlashOn';
@@ -91,6 +92,7 @@ class Home extends Component<HomeComponentProps, HomeComponentState> {
                             <MyButton type="submit" startIcon={<FlashOnIcon />} >
                                 Get the Weather
                                 </MyButton>
+                                <LocationAccess lat={this.state?.latitude} long={this.state?.longitude} />
                         </Box>
                     </form>
                     {this?.kelvToFahr()}

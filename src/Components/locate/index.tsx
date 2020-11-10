@@ -1,13 +1,15 @@
 import * as React from 'react';
 
-export interface IAppProps {
+export interface ILocationProps {
+    lat: number,
+    long: number
 }
 
-export interface IAppState {
+export interface ILocationState {
 }
 
-export default class App extends React.Component<IAppProps, IAppState> {
-  constructor(props: IAppProps) {
+export default class Location extends React.Component<ILocationProps, ILocationState> {
+  constructor(props: ILocationProps) {
     super(props);
 
     this.state = {
@@ -17,7 +19,9 @@ export default class App extends React.Component<IAppProps, IAppState> {
   public render() {
     return (
       <div>
-        
+        <h1>click me</h1>
+    {/* <p>{this.props.lat}</p>
+    <p>{this.props.long}</p> */}
       </div>
     );
   }

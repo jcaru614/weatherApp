@@ -1,4 +1,4 @@
-import { FETCH_WEATHER } from './constants';
+import { FETCH_WEATHER, FETCH_WEATHER_COOR } from './constants';
 
 interface actionA {
     type: "FETCH_WEATHER",
@@ -15,19 +15,21 @@ interface actionA {
     }
 }
 
-// interface actionb {
-//     type: "test",
-//     payload: string
-// }
+interface actionb {
+    type: "FETCH_WEATHER_COOR",
+    payload: any
+}
 
 let initialState = {
     temp: 0,
     name: '',
-    description: ''
+    description: '',
+    latitude: 0,
+    longitude: 0
 }
-// type Actions = actionA | actionb
+type Actions = actionA | actionb
 
-function weatherReducer(state = initialState, action: actionA) {
+function weatherReducer(state = initialState, action: Actions) {
     console.log("reducer ", action)
     switch (action.type) {
         case FETCH_WEATHER:
@@ -35,6 +37,11 @@ function weatherReducer(state = initialState, action: actionA) {
                 temp: action.payload.main.temp,
                 name: action.payload.name,
                 description: action.payload.weather[0].description
+            })
+        case FETCH_WEATHER_COOR:
+            return Object.assign({}, state, {
+                latitude: action.payload.latitude,
+                longitude: action.payload.longitude
             })
         default:
             return state
