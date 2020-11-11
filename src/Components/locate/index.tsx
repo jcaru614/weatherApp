@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react'
 import './styles.css';
 import { MyButton } from './styles';
 import { connect } from 'react-redux';
@@ -13,13 +13,9 @@ export interface ILocationProps {
 export interface ILocationState {
 }
 
-class Location extends React.Component<ILocationProps, ILocationState> {
+class Location extends Component<ILocationProps, ILocationState> {
   constructor(props: ILocationProps) {
     super(props);
-
-    this.state = {
-    }
-    console.log('PROPS ', this.props)
   }
   
   handleClick = () => {
@@ -29,19 +25,9 @@ class Location extends React.Component<ILocationProps, ILocationState> {
   public render() {
     return (
       <div className="btn">
-  
     <MyButton onClick={this.handleClick}>Click Me</MyButton>
       </div>
     );
-  }
-}
-
-function mapStateToProps(state: any) {
-  console.log("mapstatetoprops ", state.homeReducer)
-  return {
-      temp: state.homeReducer.temp,
-      name: state.homeReducer.name,
-      description: state.homeReducer.description
   }
 }
 
@@ -54,4 +40,4 @@ function mapDispatchToProps(dispatch: any) {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Location);
+export default connect(null, mapDispatchToProps)(Location);
