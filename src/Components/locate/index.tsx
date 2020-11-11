@@ -31,7 +31,6 @@ class Location extends Component<ILocationProps, ILocationState> {
 }
 
 function mapDispatchToProps(dispatch: any) {
-  console.log("mapdispatchtoprops ", dispatch)
   return {
       setWeatherCoor: (latitude: number, longitude: number) => {
           dispatch(fetchWeatherCoor(latitude, longitude))

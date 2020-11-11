@@ -38,7 +38,6 @@ let initialState = {
 type Actions = actionA | actionB
 
 function weatherReducer(state = initialState, action: Actions) {
-    console.log("reducer ", action)
     switch (action.type) {
         case FETCH_WEATHER:
             return Object.assign({}, state, {

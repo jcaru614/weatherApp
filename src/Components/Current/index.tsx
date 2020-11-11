@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import "./styles.css";
 import { fetchWeatherRequest } from '../controller/actions';
 import LocationAccess from '../locate/index';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import Box from '@material-ui/core/Box';
 import { MyButton, MyTextField } from './styles';
+import "./styles.css";
 import sun from '../../images/sun.png';
 import wind from '../../images/wind.png';
 
@@ -35,12 +35,10 @@ class Current extends Component<HomeComponentProps, HomeComponentState> {
 
     componentDidMount() {
         navigator.geolocation.getCurrentPosition((position:any) => {
-            console.log("position ", position.coords);
             this.setState({
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
             })
-            console.log("state ", this.state);
         })
     }
 
@@ -104,7 +102,6 @@ class Current extends Component<HomeComponentProps, HomeComponentState> {
 }
 
 function mapStateToProps(state: any) {
-    console.log("mapstatetoprops ", state.homeReducer)
     return {
         temp: state.homeReducer.temp,
         name: state.homeReducer.name,
@@ -113,7 +110,6 @@ function mapStateToProps(state: any) {
 }
 
 function mapDispatchToProps(dispatch: any) {
-    console.log("mapdispatchtoprops ", dispatch)
     return {
         setWeather: (city: string) => {
             dispatch(fetchWeatherRequest(city))

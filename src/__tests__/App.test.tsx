@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../App';
 import Nav from '../Components/Nav/index';
-
 // configure({adapter: new Adapter()});
 
 let wrapped:any;
