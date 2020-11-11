@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import "./styles.css";
 import { fetchWeatherRequest } from '../controller/actions';
 import LocationAccess from '../locate/index';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import Box from '@material-ui/core/Box';
 import { MyButton, MyTextField } from './styles';
-import "./styles";
+import sun from '../../images/sun.png';
+import wind from '../../images/wind.png';
+
 
 interface HomeComponentState {
     city: string,
@@ -63,14 +66,14 @@ class Current extends Component<HomeComponentProps, HomeComponentState> {
                 return (
                     <span className="temp">
                         <h1>{`The Temperature in ${cityName} is ${fahrenheit}°F with ${description}`}</h1>
-                        {/* <img className="temp" src={sun} alt="sun" /> */}
+                        <img className="temp" src={sun} alt="sun" />
                     </span>
                 )
             } else {
                 return (
                     <span className="temp">
                         <h1>{`The Temperature in ${cityName} is ${fahrenheit} °F with ${description}`}</h1>
-                        {/* <img className="temp" src={wind} alt="wind" /> */}
+                        <img className="temp" src={wind} alt="wind" />
                     </span>
                 )
             }
