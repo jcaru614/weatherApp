@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './styles.css';
 import { MyButton } from './styles';
 import { connect } from 'react-redux';
 import { fetchWeatherCoor } from '../controller/actions';
@@ -25,7 +24,7 @@ class Location extends Component<ILocationProps, ILocationState> {
   public render() {
     return (
       <div className="btn">
-    <MyButton onClick={this.handleClick}>Click Me</MyButton>
+    <MyButton onClick={this.handleClick}>Quick Weather</MyButton>
       </div>
     );
   }

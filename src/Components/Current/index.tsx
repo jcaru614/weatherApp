@@ -23,7 +23,7 @@ interface HomeComponentProps {
     setWeather: Function
 }
 
-class Home extends Component<HomeComponentProps, HomeComponentState> {
+class Current extends Component<HomeComponentProps, HomeComponentState> {
     constructor(props: HomeComponentProps) {
         super(props);
         this.state = {
@@ -121,4 +121,4 @@ function mapDispatchToProps(dispatch: any) {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Current);

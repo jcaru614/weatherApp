@@ -5,7 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Daily from '../Daily/index';
+import Current from '../Current/index';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -72,14 +72,14 @@ export default function FullWidthTabs() {
             textColor="secondary"
             variant="fullWidth"
           >
-            <Tab label="Daily Weather" {...a11yProps(0)} />
-            <Tab label="Weekly Forecast" {...a11yProps(1)} />
-            <Tab label="Monthly Forecast" {...a11yProps(2)} />
+            <Tab label="Current Weather" {...a11yProps(0)} />
+            <Tab label="Hourly Forecast" {...a11yProps(1)} />
+            <Tab label="Road Risk" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
       </div>
       <TabPanel value={value} index={0} >
-        <Daily />
+        <Current />
         </TabPanel>
       <TabPanel value={value} index={1} >
         Item Two
