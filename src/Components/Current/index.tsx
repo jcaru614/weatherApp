@@ -11,17 +11,17 @@ import wind from '../../images/wind.png';
 import MainView from '../Reusable/MainView';
 
 
-interface IHomeState {
-    city: string,
-    latitude: number,
-    longitude: number
-}
-
 interface IHomeProps {
     temp: number,
     name: string,
     description: string,
     setWeather: Function
+}
+
+interface IHomeState {
+    city: string,
+    latitude: number,
+    longitude: number
 }
 
 class Current extends Component<IHomeProps, IHomeState> {
@@ -82,7 +82,6 @@ class Current extends Component<IHomeProps, IHomeState> {
     public render() {
         return (
             <MainView>
- 
                 <LocationAccess latitude={this.state?.latitude} longitude={this.state?.longitude} />
                     <form onSubmit={this.handleSubmit}>
                         <h1>Get the Weather</h1>
@@ -92,7 +91,6 @@ class Current extends Component<IHomeProps, IHomeState> {
                             <MyButton type="submit" startIcon={<FlashOnIcon />} >
                                 Get the Weather
                                 </MyButton>
-                                
                         </Box>
                     </form>
                     {this?.kelvToFahr()}
@@ -103,9 +101,9 @@ class Current extends Component<IHomeProps, IHomeState> {
 
 function mapStateToProps(state: any) {
     return {
-        temp: state.homeReducer.temp,
-        name: state.homeReducer.name,
-        description: state.homeReducer.description
+        temp: state.reducer.temp,
+        name: state.reducer.name,
+        description: state.reducer.description
     };
 };
 

@@ -31,10 +31,10 @@ export const fetchWeatherCoor = (latitude: number, longitude: number) => {
 
 export const fetchfiveDay = (city: string) => {
     return (dispatch: any) => {
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
+        axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}`)
             .then(res => {
-                console.log("res ", res)
                 const response = res.data;
+                console.log("res ", res.data)
                 dispatch({
                     type: FETCH_FIVEDAY_WEATHER,
                     payload: response
