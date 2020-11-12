@@ -4,27 +4,27 @@ import { fetchWeatherRequest } from '../controller/actions';
 import LocationAccess from '../Locate/index';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import Box from '@material-ui/core/Box';
-import { MyButton, MyTextField } from './styles';
-import "./styles.css";
+import { MyButton, MyTextField, styles } from './styles';
 import sun from '../../images/sun.png';
 import wind from '../../images/wind.png';
+import MainView from '../Reusable/MainView';
 
 
-interface HomeComponentState {
+interface IHomeState {
     city: string,
     latitude: number,
     longitude: number
 }
 
-interface HomeComponentProps {
+interface IHomeProps {
     temp: number,
     name: string,
     description: string,
     setWeather: Function
 }
 
-class Current extends Component<HomeComponentProps, HomeComponentState> {
-    constructor(props: HomeComponentProps) {
+class Current extends Component<IHomeProps, IHomeState> {
+    constructor(props: IHomeProps) {
         super(props);
         this.state = {
             city: '',
@@ -62,16 +62,16 @@ class Current extends Component<HomeComponentProps, HomeComponentState> {
             let fahrenheit: number = Math.round((kelvins - 273.15) * 9 / 5 + 32)
             if (fahrenheit >= 72) {
                 return (
-                    <span className="temp">
+                    <span>
                         <h1>{`The Temperature in ${cityName} is ${fahrenheit}°F with ${description}`}</h1>
-                        <img className="temp" src={sun} alt="sun" />
+                        <img style={styles.temp} src={sun} alt="sun" />
                     </span>
                 )
             } else {
                 return (
-                    <span className="temp">
+                    <span>
                         <h1>{`The Temperature in ${cityName} is ${fahrenheit} °F with ${description}`}</h1>
-                        <img className="temp" src={wind} alt="wind" />
+                        <img style={styles.temp} src={wind} alt="wind" />
                     </span>
                 )
             }
@@ -80,8 +80,8 @@ class Current extends Component<HomeComponentProps, HomeComponentState> {
 
     public render() {
         return (
-            <div className="home">
-                <div className="innerHome">
+            <MainView>
+ 
                 <LocationAccess latitude={this.state?.latitude} longitude={this.state?.longitude} />
                     <form onSubmit={this.handleSubmit}>
                         <h1>Get the Weather</h1>
@@ -95,8 +95,8 @@ class Current extends Component<HomeComponentProps, HomeComponentState> {
                         </Box>
                     </form>
                     {this?.kelvToFahr()}
-                </div>
-            </div>
+    
+            </MainView>
         )
     }
 }
@@ -106,8 +106,8 @@ function mapStateToProps(state: any) {
         temp: state.homeReducer.temp,
         name: state.homeReducer.name,
         description: state.homeReducer.description
-    }
-}
+    };
+};
 
 function mapDispatchToProps(dispatch: any) {
     return {
