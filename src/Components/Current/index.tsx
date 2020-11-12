@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchWeatherRequest } from '../controller/actions';
-import LocationAccess from '../locate/index';
+import LocationAccess from '../Locate/index';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import Box from '@material-ui/core/Box';
 import { MyButton, MyTextField } from './styles';
