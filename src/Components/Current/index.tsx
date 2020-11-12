@@ -4,7 +4,8 @@ import { fetchWeatherRequest } from '../controller/actions';
 import LocationAccess from '../Locate/index';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import Box from '@material-ui/core/Box';
-import { MyButton, MyTextField, styles } from './styles';
+import { styles } from './styles';
+import { MyButton, MyTextField } from '../Reusable/Material'
 import sun from '../../images/sun.png';
 import wind from '../../images/wind.png';
 import MainView from '../Reusable/MainView';
@@ -95,7 +96,6 @@ class Current extends Component<IHomeProps, IHomeState> {
                         </Box>
                     </form>
                     {this?.kelvToFahr()}
-    
             </MainView>
         )
     }
