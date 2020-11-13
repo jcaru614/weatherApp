@@ -56,22 +56,21 @@ class Current extends Component<IHomeProps, IHomeState> {
     }
 
     kelvToFahr = () => {
-        let description = this.props?.description;
-        let cityName = this.props?.name;
-        let kelvins: any = this.props?.temp;
+        let { description, name, temp } = this.props
+        let kelvins: any = temp;
         if (kelvins) {
             let fahrenheit: number = Math.round((kelvins - 273.15) * 9 / 5 + 32)
             if (fahrenheit >= 72) {
                 return (
                     <span>
-                        <h1>{`The Temperature in ${cityName} is ${fahrenheit}°F with ${description}`}</h1>
+                        <h1>{`The Temperature in ${name} is ${fahrenheit}°F with ${description}`}</h1>
                         <img style={styles.temp} src={sun} alt="sun" />
                     </span>
                 )
             } else {
                 return (
                     <span>
-                        <h1>{`The Temperature in ${cityName} is ${fahrenheit} °F with ${description}`}</h1>
+                        <h1>{`The Temperature in ${name} is ${fahrenheit} °F with ${description}`}</h1>
                         <img style={styles.temp} src={wind} alt="wind" />
                     </span>
                 )

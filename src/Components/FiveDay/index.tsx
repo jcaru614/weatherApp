@@ -8,7 +8,10 @@ import { fetchfiveDay } from '../controller/actions';
 
 export interface IfiveDayProps {
     setWeather: Function,
-    list: []
+    list: [main: {
+        temp: any
+    }],
+
 }
 
 export interface IfiveDayState {
@@ -36,13 +39,12 @@ class fiveDay extends Component<IfiveDayProps, IfiveDayState> {
     }
 
     showWeather = () => {
-        console.log("this props list ", this.props?.list)
-        if (this.props?.list !== null) {
-            return (
-                <div>
-                    <h1>hello its a list</h1>
-                </div>
-            )
+        let { list } = this.props
+        if (list && list.length > 0) {
+            console.log("list ", list)
+            return list.map((el: any, i: any) => (
+                <div key={el.dt}>{el.main.temp}</div>
+            ))
         }
     }
 
@@ -56,7 +58,7 @@ class fiveDay extends Component<IfiveDayProps, IfiveDayState> {
                     <Box my={2} >
                         <MyButton type="submit" startIcon={<FlashOnIcon />} >
                             Get the Weather
-                                </MyButton>
+                        </MyButton>
                     </Box>
                 </form>
                 {this?.showWeather()}
