@@ -8,10 +8,12 @@ import { fetchfiveDay } from '../controller/actions';
 
 export interface IfiveDayProps {
     setWeather: Function,
-    list: [main: {
-        temp: any
-    }],
-
+    list: [
+        main: {
+            temp: any
+        },
+        dt_txt: any
+    ]
 }
 
 export interface IfiveDayState {
@@ -43,7 +45,10 @@ class fiveDay extends Component<IfiveDayProps, IfiveDayState> {
         if (list && list.length > 0) {
             console.log("list ", list)
             return list.map((el: any, i: any) => (
-                <div key={el.dt}>{el.main.temp}</div>
+                <div key={el.dt}>
+                    <h1>{el.main.temp}</h1>
+                    <h3>{el.dt_txt}</h3>
+                </div>
             ))
         }
     }

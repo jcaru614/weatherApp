@@ -13,9 +13,6 @@ export interface ILocationState {
 }
 
 class Location extends Component<ILocationProps, ILocationState> {
-  constructor(props: ILocationProps) {
-    super(props);
-  }
   
   handleClick = () => {
     this.props.setWeatherCoor(this.props.latitude, this.props.longitude)
