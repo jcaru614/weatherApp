@@ -3,7 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Current from '../Current/index';
 import FiveDay from '../FiveDay/index';
@@ -28,7 +28,8 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          {/* <Typography>{children}</Typography> */}
+          {children}
         </Box>
       )}
     </div>
@@ -73,18 +74,18 @@ export default function FullWidthTabs() {
             textColor="secondary"
             variant="fullWidth"
           >
-            <Tab label="Current Weather" {...a11yProps(0)} />
-            <Tab label="5 Day Forecast" {...a11yProps(1)} />
+            <Tab label="5 Day Forecast" {...a11yProps(0)} />
+            <Tab label="Current Weather" {...a11yProps(1)} />
             <Tab label="Road Risk" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
       </div>
       <TabPanel value={value} index={0} >
-        <Current />
-        </TabPanel>
-      <TabPanel value={value} index={1} >
         <FiveDay />
-        </TabPanel>
+      </TabPanel>
+      <TabPanel value={value} index={1} >
+        <Current />
+      </TabPanel>
       <TabPanel value={value} index={2} >
         Item Three
         </TabPanel>

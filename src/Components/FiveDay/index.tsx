@@ -41,15 +41,35 @@ class fiveDay extends Component<IfiveDayProps, IfiveDayState> {
     }
 
     showWeather = () => {
-        let { list } = this.props
+        let { list } = this.props;
         if (list && list.length > 0) {
-            console.log("list ", list)
-            return list.map((el: any, i: any) => (
-                <div key={el.dt}>
-                    <h1>{el.main.temp}</h1>
-                    <h3>{el.dt_txt}</h3>
-                </div>
-            ))
+            let forecast: any = [[], [], [], [], []];
+            forecast[0].push(list[0]);
+            console.log("forecast 1", forecast);
+            let index: number = 0;
+            for (let i = 1; i < list.length; i++) {
+                console.log("forecast all", forecast);
+                let date = Number(list[i].dt_txt.substr(8, 3));
+                let lastDate = Number(list[i - 1].dt_txt.substr(8, 3));
+                if (date !== lastDate) {
+                    index++;
+                    console.log("forecast 2", forecast);
+                    // forecast[index].push(list[i]);
+                } else {
+                    console.log("forecast 3", forecast);
+                    // forecast[index].push(list[i]);
+                }
+            }
+            // for (let j = 0; j < forecast.length; j++) {
+            //     return forecast[j].map((el: any, i: any) => (
+            //         <div key={el.dt}>
+            //             {console.log("el ", el)}
+            //             <h1>{el.main.temp}</h1>
+            //             <h3>{el.dt_txt.substr(0, 10)}</h3>
+            //         </div>
+            //     ))
+            // }
+
         }
     }
 
@@ -73,7 +93,6 @@ class fiveDay extends Component<IfiveDayProps, IfiveDayState> {
 }
 
 function mapStateToProps(state: any) {
-    console.log('matstatetoprops ', state)
     return {
         list: state.reducer.list
     }
