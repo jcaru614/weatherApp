@@ -46,13 +46,16 @@ function a11yProps(index: any) {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     flexGrow: 1,
-    width: 570,
+    width: 725,
     position: 'absolute',
     top: '10%',
-    left: '35.5%',
+    left: '30.5%',
     marginTop: '-50px',
     marginLeft: '-50px',
   },
+  root2: {
+    backgroundColor: 'rgba(0, 0, 55, 0.8)'
+  }
 }));
 
 export default function FullWidthTabs() {
@@ -66,17 +69,19 @@ export default function FullWidthTabs() {
   return (
     <>
       <div className={classes.root}>
-        <AppBar position="static" color="primary">
+        <AppBar position="static" 
+        // color="primary"
+        >
           <Tabs
             value={value}
             onChange={handleChange}
-            indicatorColor="secondary"
-            textColor="secondary"
+            // indicatorColor="primary"
+            // textColor="primary"
             variant="fullWidth"
           >
-            <Tab label="5 Day Forecast" {...a11yProps(0)} />
-            <Tab label="Current Weather" {...a11yProps(1)} />
-            <Tab label="Road Risk" {...a11yProps(2)} />
+            <Tab className={classes.root2} label="5 Day Forecast" {...a11yProps(0)} />
+            <Tab className={classes.root2} label="Current Weather" {...a11yProps(1)} />
+            <Tab className={classes.root2} label="Road Risk" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
       </div>

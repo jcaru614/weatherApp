@@ -8,7 +8,9 @@ class App extends Component {
   public render() {
     return (
       <Provider store={store}>
+        <div className="App">
         <Nav />
+        </div>
       </Provider>
     );
   }

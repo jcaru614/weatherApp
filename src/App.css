@@ -1,4 +1,7 @@
 body {
-  background: url('./images/background2.png');
+  background: url('./images/sunset.jpg');
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
