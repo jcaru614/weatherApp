@@ -9,5 +9,5 @@ export const MyButton = styled(Button)({
     padding: '30px 20px',
     position: 'absolute',
     top: '0%',
-    left: '72%',
+    left: '85.5%',
   });

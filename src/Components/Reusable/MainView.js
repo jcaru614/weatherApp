@@ -6,7 +6,7 @@ export default function MainView(props) {
     view: {
       position: 'absolute',
       top: '20%',
-      left: '30%',
+      left: '15%',
       marginTop: '-50px',
       marginLeft: '-50px',
     },
@@ -15,10 +15,11 @@ export default function MainView(props) {
       textAlign: 'center',
       backgroundColor: 'rgba(0, 0, 55, 0.8)',
       color: 'white',
-      padding: '30px',
-      width: '650px',
-      height: '500px',
+      padding: '10px',
+      width: '1100px',
+      height: '575px',
       borderRadius: '90px 5px 90px 5px / 90px 5px 90px 5px',
+      marginBottom: '20px'
     },
   }
 

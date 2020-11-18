@@ -68,8 +68,6 @@ class fiveDay extends Component<IfiveDayProps, IfiveDayState> {
                 ))}
                     </Card>
                 )
-
-
             })
         }
     }
