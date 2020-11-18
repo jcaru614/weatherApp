@@ -5,12 +5,13 @@ import { MyButton, MyTextField } from '../Reusable/Material'
 import Box from '@material-ui/core/Box';
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import { fetchfiveDay } from '../controller/actions';
+import Card from '../Reusable/Card';
 
 export interface IfiveDayProps {
     setWeather: Function,
     list: [
         main: {
-            temp: any
+            temp: number
         },
         dt_txt: any
     ]
@@ -43,39 +44,33 @@ class fiveDay extends Component<IfiveDayProps, IfiveDayState> {
     showWeather = () => {
         let { list } = this.props;
         if (list && list.length > 0) {
-            console.log("list ", list)
-            console.log("list len", list.length)
-            let forecast: any = [['day 1'], ['day 2'], ['day 3'], ['day 4'], ['day 5'], ['day 6']];
+            let forecast: any = [[], [], [], [], [], []];
             forecast[0].push(list[0]);
-            console.log("forecast 1", forecast);
             let index: number = 0;
-            console.log("index ", index)
             for (let i = 1; i < list.length; i++) {
-                console.log("forecast all", forecast);
                 let date = Number(list[i].dt_txt.substr(8, 3));
                 let lastDate = Number(list[i - 1].dt_txt.substr(8, 3));
                 if (date !== lastDate) {
                     index++;
-                    console.log("index ", index)
-                    console.log("forecast 2", forecast);
                     forecast[index].push(list[i]);
                 } else {
-                    console.log("forecast 3", forecast);
                     forecast[index].push(list[i]);
                 }
             }
+            return forecast.map((arr: []) => {
+                return (
+                    <Card>
+                        {arr.map((obj: any) => (
+                        <div key={obj.dt}>
+                            <p>{obj.main.temp}</p>
+                            <p>{obj.dt_txt.substr(0, 10)}</p>
+                        </div>
+                ))}
+                    </Card>
+                )
 
 
-            // for (let j = 0; j < forecast.length; j++) {
-            //     return forecast[j].map((el: any, i: any) => (
-            //         <div key={el.dt}>
-            //             {console.log("el ", el)}
-            //             <h1>{el.main.temp}</h1>
-            //             <h3>{el.dt_txt.substr(0, 10)}</h3>
-            //         </div>
-            //     ))
-            // }
-
+            })
         }
     }
 

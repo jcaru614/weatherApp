@@ -17,7 +17,7 @@ export default function MainView(props) {
       color: 'white',
       padding: '40px',
       width: '500px',
-      height: '450px',
+      height: '500px',
       borderRadius: '90px 5px 90px 5px / 90px 5px 90px 5px',
     },
   }
