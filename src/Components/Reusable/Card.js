@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -11,7 +11,6 @@ import Paper from '@material-ui/core/Paper';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    // marginLeft: '-2px',
     margin: theme.spacing(1),
     width: theme.spacing(20),
     height: 300,
@@ -23,57 +22,71 @@ const useStyles = makeStyles((theme) => ({
   root2: {
     flexWrap: 'wrap',
     '& > *': {
-        height: theme.spacing(20),
-        backgroundColor: 'rgb(64,81,181)',
-        borderRadius: '10px',
-        overflow: 'scroll',
+      height: theme.spacing(20),
+      backgroundColor: 'rgb(64,81,181)',
+      borderRadius: '10px',
+      overflow: 'scroll',
     },
     root3: {
-        width: 300,
+      width: 300,
     }
-},
+  },
 
 }));
 
 function valuetext(value) {
-    return `${value}°C`;
-  }
+  return `${value}°C`;
+}
 
 export default function MediaCard(props) {
-    console.log("prop ", props)
+  console.log("prop ", props)
   const classes = useStyles();
+  const [state, setstate] = useState({
+    date: "",
+    temp: 0
+});
+
+  useEffect(() => {
+    return props.forecast.map((item) => (
+      setstate({
+        date: item.dt_txt.substr(5, 6),
+      })
+    ))
+  }, [props.forecast])
+
+
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardContent >
           <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+            {state.date}
           </Typography>
           <div className={classes.root2}>
             <Paper elevation={3}>
-                {props.children}
+              {props.children}
             </Paper>
-        </div>
+          </div>
 
         </CardContent>
       </CardActionArea>
       <CardActions>
-      <div className={classes.root3}>
-      <Typography id="discrete-slider" gutterBottom>
-        Temperature
+        <div className={classes.root3}>
+          <Typography id="discrete-slider" gutterBottom>
+            Temperature
       </Typography>
-      <Slider
-        defaultValue={30}
-        getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={10}
-        max={110}
-      />
-    </div>
+          <Slider
+            defaultValue={30}
+            getAriaValueText={valuetext}
+            aria-labelledby="discrete-slider"
+            valueLabelDisplay="auto"
+            step={10}
+            marks
+            min={10}
+            max={110}
+          />
+        </div>
       </CardActions>
     </Card>
   );

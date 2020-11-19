@@ -54,12 +54,15 @@ class Current extends Component<IHomeProps, IHomeState> {
             city: ''
         })
     }
+    converter = (kelvins: number) => {
+    return Math.round((kelvins - 273.15) * 9 / 5 + 32)
+    }
 
     kelvToFahr = () => {
         let { description, name, temp } = this.props
         let kelvins: any = temp;
         if (kelvins) {
-            let fahrenheit: number = Math.round((kelvins - 273.15) * 9 / 5 + 32)
+            let fahrenheit: number = this.converter(kelvins)
             if (fahrenheit >= 72) {
                 return (
                     <span>

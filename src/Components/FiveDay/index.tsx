@@ -41,13 +41,18 @@ class fiveDay extends Component<IfiveDayProps, IfiveDayState> {
         })
     }
 
+    converter = (kelvins:number) => {
+        return Math.round((kelvins - 273.15) * 9 / 5 + 32)
+        }
+
     showWeather = () => {
         let { list } = this.props;
         if (list && list.length > 0) {
-            let forecast: any = [[], [], [], [], [], []];
+            let forecast: any = [[], [], [], [], []];
             forecast[0].push(list[0]);
             let index: number = 0;
-            for (let i = 1; i < list.length; i++) {
+            // added -1 since we get 6 days of forecast instead of 5
+            for (let i = 1; i < list.length-1; i++) {
                 let date = Number(list[i].dt_txt.substr(8, 3));
                 let lastDate = Number(list[i - 1].dt_txt.substr(8, 3));
                 if (date !== lastDate) {
@@ -59,13 +64,13 @@ class fiveDay extends Component<IfiveDayProps, IfiveDayState> {
             }
             return forecast.map((arr: []) => {
                 return (
-                    <Card>
+                    <Card forecast={arr} >
                         {arr.map((obj: any) => (
-                        <div key={obj.dt}>
-                            <p>{obj.main.temp}</p>
-                            <p>{obj.dt_txt.substr(0, 10)}</p>
-                        </div>
-                ))}
+                            <div key={obj.dt}>
+                                <p>{this.converter(obj.main.temp)} °F</p>
+                            </div>
+                        ))}
+
                     </Card>
                 )
             })
